@@ -7,17 +7,24 @@ and traversing files and folders.
 """
 
 import os
-
+from unc_preprocessing import extract_features
 from unc_document import Document
 
 
-def read_headlines(root_path: str):
+def read_stopwords(file_path: str):
+    with open(file_path, mode='r', encoding='utf-8') as file:
+        stopwords = set(file.read().split())
+    return stopwords
+
+
+def read_headlines(root_path: str, stop_words: set):
     """
     Reads headlines from `root_path` and returns a dict.
     Folders one level below are considered the source labels.
     Folders two levels below are considered the category labels.
     .doc files three levels below are considered as headlines.
 
+    :param stop_words: set of stop words
     :param root_path: Folder directory of dataset
     :return: Dictionary containing the headlines
     """
@@ -41,13 +48,22 @@ def read_headlines(root_path: str):
             headlines = [headline[:headline.rfind(".")] for headline in headlines]
 
             for headline in headlines:
-                documents.append(Document(source_folder, category_folder, headline))
+                features = extract_features(headline, stopwords)
+                documents.append(Document(source_folder, category_folder, headline, features))
 
     documents = {idx: document for idx, document in enumerate(documents)}
     return documents
 
 
-documents = read_headlines(r'dataset')
+stopwords = read_stopwords(r'stopwords.txt')
+documents = read_headlines(r'dataset', stopwords)
+
+for document in documents.values():
+    print(document.text)
+    print(document.features)
+    print()
+
+
 # incidence = {idx: {term: True for term in document.features} for idx, document in documents.items()}
 #
 #
