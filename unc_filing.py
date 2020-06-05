@@ -17,20 +17,20 @@ def read_stopwords(file_path: str):
     return stopwords
 
 
-def read_headlines(root_path: str, stop_words: set):
+def read_headlines(root_path: str, stopwords: set):
     """
     Reads headlines from `root_path` and returns a dict.
     Folders one level below are considered the source labels.
     Folders two levels below are considered the category labels.
     .doc files three levels below are considered as headlines.
 
-    :param stop_words: set of stop words
+    :param stopwords: set of stop words
     :param root_path: Folder directory of dataset
     :return: Dictionary containing the headlines
     """
     documents = []
 
-    source_folders = next(os.walk(root_path, '.'))[1]
+    source_folders = next(os.walk(root_path))[1]
 
     for source_folder in source_folders:
         category_folders = next(os.walk(os.path.join(root_path, source_folder)))[1]
@@ -55,14 +55,12 @@ def read_headlines(root_path: str, stop_words: set):
     return documents
 
 
-stopwords = read_stopwords(r'stopwords.txt')
-documents = read_headlines(r'dataset', stopwords)
+if __name__ == '__main__':
+    stopwords = read_stopwords(r'stopwords.txt')
+    documents = read_headlines(r'dataset', stopwords)
 
-for document in documents.values():
-    print(document.text)
-    print(document.features)
-    print()
-
+    for document in documents.values():
+        print(document)
 
 # incidence = {idx: {term: True for term in document.features} for idx, document in documents.items()}
 #
