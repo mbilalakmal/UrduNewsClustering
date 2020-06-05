@@ -20,3 +20,6 @@ class Document:
         self.category = category
         self.text = text
         self.features = features
+
+    def __repr__(self):
+        return f'{self.features}'
