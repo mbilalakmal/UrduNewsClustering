@@ -22,4 +22,6 @@ class Document:
         self.features = features
 
     def __repr__(self):
-        return f'{self.features}'
+        return f'{self.features}\n' \
+               f'{self.text}\n' \
+               f'{self.source}\n'
