@@ -59,13 +59,15 @@ if __name__ == '__main__':
     stopwords = read_stopwords(r'stopwords.txt')
     documents = read_headlines(r'dataset', stopwords)
 
-    for document in documents.values():
-        print(document)
+    # for document in documents.values():
+    #     print(document)
 
-# incidence = {idx: {term: True for term in document.features} for idx, document in documents.items()}
-#
-#
-# incidence_matrix = pd.DataFrame.from_dict(data=incidence, orient='index', dtype=bool)
-# incidence_matrix.fillna(False, inplace=True)
-# print(incidence_matrix.dtypes)
-# # incidence_matrix.to_csv('incide.csv')
+    from unc_clustering import get_similar_documents
+    import random
+    random = random.choice(range(len(documents)))
+    document = documents[random]
+
+    similar_documents = get_similar_documents(random, documents)
+    for doc in similar_documents:
+        print(documents[doc])
+
