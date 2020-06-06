@@ -11,10 +11,10 @@ of an actual text document.
 class Document:
     def __init__(
             self,
-            source: str,
-            category: str,
             text: str,
-            features: str
+            features: str,
+            source: str = 'User',
+            category: str = 'User',
     ):
         self.source = source
         self.category = category
@@ -22,6 +22,4 @@ class Document:
         self.features = features
 
     def __repr__(self):
-        return f'{self.features}\n' \
-               f'{self.text}\n' \
-               f'{self.source}\n'
+        return f'{self.category} - {self.text}'
