@@ -98,7 +98,7 @@ while True:
             [sg.Text()],
             [sg.Text('OR Enter Your Own', font=18)],
             [sg.InputText(key='-ENTERED-HEADLINE-'),
-                sg.Checkbox(text='Save Results', key='-SAVE-',
+             sg.Checkbox(text='Save Results', key='-SAVE-',
                          tooltip='If checked, results will be saved to results.txt')
              ],
             [sg.Button(key='-ENTER-HEADLINE-', button_text=' SUBMIT ')],
