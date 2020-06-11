@@ -1,6 +1,10 @@
 """
 This file displays a GUI for clustering evaluation.
 
+The first window asks fro the dataset folder and the stopwords file.
+The second window asks for a query headline and whether to save results.
+The third window displays the headlines similar to the query headline.
+
 
 (C) 2020 Urdu News Clustering
 """

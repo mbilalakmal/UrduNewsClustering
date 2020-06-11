@@ -1,10 +1,11 @@
 """
-This file defines clustering methods fo the documents.
-Jackard similarity index is used to form clusters.
+This file defines the get_similar_documents method.
+It uses the Jackard index for similarity measure.
 
 
 (C) 2020 Urdu News Clustering
 """
+
 from typing import List
 
 from unc_document import Document

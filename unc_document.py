@@ -6,6 +6,7 @@ of an actual text document.
 
 (C) 2020 Urdu News Clustering
 """
+
 from typing import Set
 
 
