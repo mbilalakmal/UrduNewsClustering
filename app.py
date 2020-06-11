@@ -55,10 +55,14 @@ layout += [[sg.Text()]]
 window = sg.Window(title='IR Course Project', layout=layout, resizable=True)
 
 stop_path = root_path = None
+results = ''
 
 while True:
     event, values = window.read()
     if event is None:
+        # write results to file here
+        if results != '':
+            store_results(results)
         break
 
     elif event == '-FOLDER-BUTTON-':
@@ -121,12 +125,11 @@ while True:
         result_documents = get_similar_documents(query_document, documents)
 
         if values2['-SAVE-'] is True:
-            with open('results.txt', mode='a+', encoding='utf-8') as results:
-                results.write(f'{len(result_documents)} Similar Headlines For:\n')
-                results.write(f'{query_document.text} {query_document.category}\n\n')
-                for doc in result_documents:
-                    results.write(f'{doc.text} {doc.category}\n')
-                results.write('\n')
+            results += f'{len(result_documents)} Similar Headlines For:\n'
+            results += f'{query_document.text} {query_document.category}\n\n'
+            for doc in result_documents:
+                results += f'{doc.text} {doc.category}\n'
+            results += '\n'
 
         layout3 = [
             [sg.Text()],
