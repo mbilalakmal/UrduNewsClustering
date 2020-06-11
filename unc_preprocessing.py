@@ -5,10 +5,11 @@ For now, it removes punctuation and stopwords.
 
 (C) 2020 Urdu News Clustering
 """
+
 from typing import Optional, Set
 
 
-def extract_features(text: str, stopwords: Optional[Set[str]], truncate: int = 7):
+def extract_features(text: str, stopwords: Optional[Set[str]], truncate: int = 6):
     """
     Returns set of terms from a string.
 
@@ -17,9 +18,13 @@ def extract_features(text: str, stopwords: Optional[Set[str]], truncate: int = 7
     :param text: original string
     :return: set of tokens after removing punctuation and stop words.
     """
-    punctuation_marks = ['\'', '\"', '.', '،', ',', '!', '؟', '’', '۔', '‘', '-', 'ء', '؛']
+    punctuation_marks = ['\'', '\"', '.', '،', ',',
+                         '!', '؟', '’', '۔', '‘',
+                         '-', 'ء', '؛', '1', '2',
+                         '3', '4', '5', '6', '7',
+                         '8', '9', '0']
 
-    # remove punctuation marks
+    # remove punctuation marks and English digits
     for pm in punctuation_marks:
         if pm in text:
             text = text.replace(pm, ' ')
@@ -29,6 +34,7 @@ def extract_features(text: str, stopwords: Optional[Set[str]], truncate: int = 7
     if stopwords is not None:  # remove stopwords
         terms.difference_update(stopwords)
 
+    # this is based on a personal heuristic about Urdu
     trunc_terms: Set[str] = set()
     for term in terms:
         if len(term) > truncate:
