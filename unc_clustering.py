@@ -39,5 +39,5 @@ def _get_jackard_index(document1: Document, document2: Document):
     """
     common: set = document1.features.intersection(document2.features)
     union: set = document1.features.union(document2.features)
-    ji: float = len(common) / len(union)
+    ji: float = len(common) / len(union) if len(union) > 0 else 0
     return ji
