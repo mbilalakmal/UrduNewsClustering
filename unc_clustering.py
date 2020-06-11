@@ -23,7 +23,7 @@ def get_similar_documents(
 
     for document in documents:
         jackard_index: float = _get_jackard_index(query_document, document)
-        if jackard_index >= threshold:
+        if (jackard_index >= threshold) and (jackard_index != 1):
             similar_documents.append(document)
 
     return similar_documents
