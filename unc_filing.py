@@ -62,3 +62,16 @@ def read_headlines(root_path: str, stopwords: Optional[Set[str]]):
                 documents.append(document)
 
     return documents
+
+
+def store_results(results: str):
+    with open('results.txt', mode='a+', encoding='utf-8') as file:
+        file.write(results)
+#
+#
+# if __name__ == '__main__':
+#     stopwords = read_stopwords(r'stopwords.txt')
+#     documents = read_headlines(r'dataset', stopwords)
+#     from purity_test import evaluate_clustering
+#
+#     evaluate_clustering(documents)
