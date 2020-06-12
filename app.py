@@ -16,47 +16,52 @@ from unc_filing import *
 
 sg.theme('DarkBlue')
 
-layout = [[sg.Text()]]
-layout += [[
-    sg.Text('Urdu News Clustering', font=('Helvetica', 18)),
+layout = [[
+    sg.Text('اردو خبروں کی جھنڈ بندی', font=('Helvetica', 21), tooltip='Sorting of Urdu news'),
     sg.Image(filename=r'newspaper.png')
 ]]
 layout += [[sg.Text()]]
 
 layout += [[sg.Button(
-    'Select dataset folder',
+    'Select The Dataset Folder',
     key='-FOLDER-BUTTON-',
-    size=(26, 1),
+    size=(26, 2),
+    font=12,
 ),
     sg.Text(
-        'No folder selected',
+        ' No folder selected',
         key='-FOLDER-TEXT-',
-        font=('Helvetica', 9),
+        font=('Helvetica', 12),
         size=(36, 1),
     )]]
 layout += [[sg.Button(
-    'Select stopwords file',
+    'Select The Stopwords File',
     key='-FILE-BUTTON-',
-    size=(26, 1),
+    size=(26, 2),
+    font=12,
 ),
     sg.Text(
-        'No file selected'.ljust(64),
+        ' No file selected'.ljust(64),
         key='-FILE-TEXT-',
-        font=('Helvetica', 9),
+        font=('Helvetica', 12),
         size=(36, 1),
     )]]
-layout += [[sg.Text()]]
+
+layout += [[sg.Text('_'*70, pad=(0, 10))]]
 
 layout += [[sg.Button(
-    'Process Dataset',
+    'PROCESS DATASET',
     key='-READ-',
     button_color=('White', 'Teal'),
     font=('Helvetica', 12),
-    size=(16, 2)
+    size=(20, 2)
 )]]
-layout += [[sg.Text()]]
 
-window = sg.Window(title='IR Course Project', layout=layout, resizable=True)
+window = sg.Window(
+    title='IR Course Project', layout=layout,
+    resizable=True, element_justification='center',
+    margins=(20, 20)
+)
 
 stop_path = root_path = None
 results = ''
