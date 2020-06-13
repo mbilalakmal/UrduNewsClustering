@@ -64,6 +64,6 @@ def read_headlines(root_path: str, stopwords: Optional[Set[str]]):
     return documents
 
 
-def store_results(results: str):
-    with open('results.txt', mode='a+', encoding='utf-8') as file:
+def store_results(results: str, path: str):
+    with open(path, mode='a+', encoding='utf-8') as file:
         file.write(results)
