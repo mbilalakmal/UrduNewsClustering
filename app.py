@@ -72,7 +72,7 @@ def display_similar_news(documents: List[Document], stopwords: Set[str]):
                     font=('Helvetica', 16), size=(64, 16),
                     bind_return_key=True, pad=(10, 10))],
         [sg.Text('Or Type In Your Own Headline', font=18)],
-        [sg.InputText(key='-ENTERED-HEADLINE-'),
+        [sg.InputText(key='-ENTERED-HEADLINE-', font=('Helvetica', 16)),
          sg.Checkbox(text='Save Results', key='-SAVE-')],
         [sg.Button(key='-ENTER-HEADLINE-', button_text=' SUBMIT ')],
     ]
@@ -88,7 +88,7 @@ def display_similar_news(documents: List[Document], stopwords: Set[str]):
             query_document: Document = values['-HEADLINE-'][0]
 
         elif event == '-ENTER-HEADLINE-':
-            query_text: str = values['-ENTERED--HEADLINE']
+            query_text: str = values['-ENTERED-HEADLINE-']
             features = extract_features(query_text, stopwords)
             query_document: Document = Document(text=query_text, features=features)
 
