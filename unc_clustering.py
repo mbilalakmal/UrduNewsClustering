@@ -11,11 +11,7 @@ from typing import List
 from unc_document import Document
 
 
-def get_similar_documents(
-        query_document: Document,
-        documents: List[Document],
-        threshold: float = 0.20
-):
+def get_similar_documents(query_document: Document, documents: List[Document], threshold: float = 0.20):
     """
     Returns list of documents similar to the given document.
     Documents with similarity below `threshold` will not be included.
